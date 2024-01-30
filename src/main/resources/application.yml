@@ -1,0 +1,16 @@
+### SERVER PORT DEFINITION ###
+server:
+  port: 9595
+  #Para alterar a porta padrão da aplicação
+
+### DATABASE DEFINITION ###
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/${MYSQL_DATABASE}?useTimezone=true&serverTimezone=${TZ}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
