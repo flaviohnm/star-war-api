@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class PlanetService {
 
     private PlanetRepository repository;
-
     public PlanetService(PlanetRepository repository) {
         this.repository = repository;
     }
