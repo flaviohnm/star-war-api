@@ -1,19 +1,25 @@
 package com.example.swplanetapi.service;
 
 import com.example.swplanetapi.model.Planet;
+import com.example.swplanetapi.querybuilder.QueryBuilder;
 import com.example.swplanetapi.repository.PlanetRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Example;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.swplanetapi.commom.PlanetConstants.INVALID_PLANET;
 import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -52,7 +58,7 @@ public class PlanetServiceTest {
     }
 
     @Test
-    public void getPlanet_ByUnexistingId_ReturnsEmpty() {
+    public void getPlanet_ByUnExistingId_ReturnsEmpty() {
         when(repository.findById(anyLong())).thenReturn(Optional.empty());
 
         Optional<Planet> sut = service.getById(5L);
@@ -71,12 +77,37 @@ public class PlanetServiceTest {
     }
 
     @Test
-    public void getPlanet_ByUnexistingName_ReturnsEmpty() {
-        final String name = "Unexisting name";
+    public void getPlanet_ByUnExistingName_ReturnsEmpty() {
+        final String name = "UnExisting name";
 
         when(repository.findByName(name)).thenReturn(Optional.empty());
 
         Optional<Planet> sut = service.getByName(name);
+
+        assertThat(sut).isEmpty();
+    }
+
+    @Test
+    public void listPlanets_ReturnsAllPlanets() {
+        List<Planet> planets = new ArrayList<>() {{
+            add(PLANET);
+        }};
+
+        Example<Planet> query = QueryBuilder.makeQuery(new Planet(PLANET.getClimate(), PLANET.getTerrain()));
+        when(repository.findAll(query)).thenReturn(planets);
+
+        List<Planet> sut = service.getPlanets(PLANET.getClimate(), PLANET.getTerrain());
+
+        assertThat(sut).isNotEmpty();
+        assertThat(sut).hasSize(1);
+        assertThat(sut.getFirst()).isEqualTo(PLANET);
+    }
+
+    @Test
+    public void listPlanets_ReturnsNoPlanets() {
+        when(repository.findAll(any())).thenReturn(Collections.emptyList());
+
+        List<Planet> sut = service.getPlanets(PLANET.getClimate(), PLANET.getTerrain());
 
         assertThat(sut).isEmpty();
     }
