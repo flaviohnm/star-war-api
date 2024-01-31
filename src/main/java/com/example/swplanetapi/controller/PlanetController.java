@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/planets")
 public class PlanetController {
@@ -15,7 +17,7 @@ public class PlanetController {
     private PlanetService service;
 
     @PostMapping
-    public ResponseEntity<Planet> create(@RequestBody Planet planet){
+    public ResponseEntity<Planet> create(@RequestBody Planet planet) {
         Planet planetCreated = service.create(planet);
         return ResponseEntity.status(HttpStatus.CREATED).body(planetCreated);
     }
@@ -23,12 +25,20 @@ public class PlanetController {
     @GetMapping("/{id}")
     public ResponseEntity<Planet> getById(@PathVariable("id") Long id) {
         return service.getById(id).map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<Planet> getByName(@PathVariable("name") String name){
+    public ResponseEntity<Planet> getByName(@PathVariable("name") String name) {
         return service.getByName(name).map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping
+    public ResponseEntity<List<Planet>> getPlanets(@RequestParam(required = false) String climate,
+                                                   @RequestParam(required = false) String terrain) {
+        List<Planet> planets = service.getPlanets(climate, terrain);
+        return ResponseEntity.ok(planets);
+    }
+
 }

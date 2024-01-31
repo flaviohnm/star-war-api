@@ -1,9 +1,13 @@
 package com.example.swplanetapi.service;
 
 import com.example.swplanetapi.model.Planet;
+import com.example.swplanetapi.querybuilder.QueryBuilder;
 import com.example.swplanetapi.repository.PlanetRepository;
+import org.hibernate.boot.model.internal.QueryBinder;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +28,10 @@ public class PlanetService {
 
     public Optional<Planet> getByName(String name){
         return repository.findByName(name);
+    }
+
+    public List<Planet> getPlanets(String climate, String terrain){
+        Example<Planet> query = QueryBuilder.makeQuery(new Planet(climate, terrain));
+        return repository.findAll(query);
     }
 }

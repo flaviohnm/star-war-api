@@ -13,6 +13,16 @@ public class Planet {
     private String climate;
     private String terrain;
 
+    public Planet(String climate, String terrain) {
+        this.climate = climate;
+        this.terrain = terrain;
+    }
+    public Planet(String name, String climate, String terrain) {
+        this.name = name;
+        this.climate = climate;
+        this.terrain = terrain;
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,11 +56,7 @@ public class Planet {
     }
 
 
-    public Planet(String name, String climate, String terrain) {
-        this.name = name;
-        this.climate = climate;
-        this.terrain = terrain;
-    }
+
 
     @Override
     public boolean equals(Object obj){
