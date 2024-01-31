@@ -17,10 +17,10 @@ import java.util.Optional;
 
 import static com.example.swplanetapi.commom.PlanetConstants.INVALID_PLANET;
 import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -110,5 +110,17 @@ public class PlanetServiceTest {
         List<Planet> sut = service.getPlanets(PLANET.getClimate(), PLANET.getTerrain());
 
         assertThat(sut).isEmpty();
+    }
+
+    @Test
+    public void removePlanet_WithExistingId_doesNotThrowAnyException(){
+        assertThatCode(() -> service.removePlanet(anyLong())).doesNotThrowAnyException();
+    }
+
+    @Test
+    public void removePlanet_WithExistingId_ThrowAnyException(){
+        doThrow(new RuntimeException()).when(repository).deleteById(anyLong());
+
+        assertThatThrownBy(() -> service.removePlanet(anyLong())).isInstanceOf(RuntimeException.class);
     }
 }
