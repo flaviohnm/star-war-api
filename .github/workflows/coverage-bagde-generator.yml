@@ -47,6 +47,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           committer: Vincent A Cicirello <cicirello@users.noreply.github.com>
           branch: create-pull-request/badge
+          token: ${{ secrets.ACTIONS_BOT_TOKEN }}
           delete-branch: true
           labels: |
             automated
