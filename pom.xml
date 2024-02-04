@@ -19,6 +19,7 @@
 		<commons.version>3.14.0</commons.version>
 		<h2.version>2.2.224</h2.version>
 		<mysql.version>8.3.0</mysql.version>
+		<jacoco.version>0.8.11</jacoco.version>
 	</properties>
 
 	<dependencies>
@@ -63,11 +64,22 @@
 			<version>${h2.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- Jacoco -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>${jacoco.version}</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
