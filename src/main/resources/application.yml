@@ -1,7 +1,7 @@
 ### SERVER PORT DEFINITION ###
 server:
   port: 9595
-  #Para alterar a porta padr„o da aplicaÁ„o
+  #Para alterar a porta padr√£o da aplica√ß√£o
 
 ### DATABASE DEFINITION ###
 spring:
