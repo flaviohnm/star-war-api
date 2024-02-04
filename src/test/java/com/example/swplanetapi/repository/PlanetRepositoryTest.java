@@ -36,9 +36,8 @@ public class PlanetRepositoryTest {
         Planet emptyPlanet = new Planet();
         Planet invalidPlanet = new Planet("", "","");
 
-        assertThatThrownBy(() -> repository.save(emptyPlanet));
-        assertThatThrownBy(() -> repository.save(invalidPlanet));
-
+        assertThatThrownBy(() -> repository.save(emptyPlanet)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> repository.save(invalidPlanet)).isInstanceOf(RuntimeException.class);
 
     }
 
