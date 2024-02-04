@@ -47,6 +47,8 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           committer: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           branch: create-pull-request/badge
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN}}
           delete-branch: true
           labels: |
             automated
