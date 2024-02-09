@@ -11,7 +11,7 @@ public class Planet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty()
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @NotEmpty()
     @Column(nullable = false)
