@@ -1,4 +1,4 @@
-version: 2
+version: 4
 updates:
   - package-ecosystem: 'maven' # See documentation for possible values
     directory: './' # Location of package manifests
