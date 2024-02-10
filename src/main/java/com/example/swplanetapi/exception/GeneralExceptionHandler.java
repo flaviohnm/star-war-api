@@ -19,7 +19,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    private ResponseEntity<Object> handleConflict(DataIntegrityViolationException ex){
+    private ResponseEntity<Object> handleConflict(DataIntegrityViolationException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(ex.getMessage());
     }
