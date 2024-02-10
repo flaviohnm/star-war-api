@@ -2,6 +2,7 @@ package com.example.swplanetapi.controller;
 
 import com.example.swplanetapi.model.Planet;
 import com.example.swplanetapi.service.PlanetService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class PlanetController {
     private PlanetService service;
 
     @PostMapping
-    public ResponseEntity<Planet> create(@RequestBody Planet planet) {
+    public ResponseEntity<Planet> create(@RequestBody @Valid Planet planet) {
         Planet planetCreated = service.create(planet);
         return ResponseEntity.status(HttpStatus.CREATED).body(planetCreated);
     }
@@ -42,7 +43,7 @@ public class PlanetController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> removePlanet(@PathVariable("id") Long id){
+    public ResponseEntity<Void> removePlanet(@PathVariable("id") Long id) {
         service.removePlanet(id);
         return ResponseEntity.noContent().build();
     }
