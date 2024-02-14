@@ -1,15 +1,20 @@
 package com.example.swplanetapi.repository;
 
 import com.example.swplanetapi.model.Planet;
+import com.example.swplanetapi.querybuilder.QueryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Example;
+import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
+import static com.example.swplanetapi.commom.PlanetConstants.TATOOINE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -93,4 +98,28 @@ public class PlanetRepositoryTest {
         assertThat(planetOpt).isEmpty();
     }
 
+    @Sql(scripts = "/import_planets.sql")
+    @Test
+    public void listPlants_ReturnsFilteredPlanets() throws Exception {
+        Example<Planet> queryWithoutFilters = QueryBuilder.makeQuery(new Planet());
+        Example<Planet> queryWithFilters = QueryBuilder.makeQuery(new Planet(TATOOINE.getClimate(), TATOOINE.getTerrain()));
+
+        List<Planet> responseWithoutFilters = repository.findAll(queryWithoutFilters);
+        List<Planet> responseWithFilters = repository.findAll(queryWithFilters);
+
+        assertThat(responseWithoutFilters).isNotEmpty();
+        assertThat(responseWithoutFilters).hasSize(3);
+        assertThat(responseWithFilters).isNotEmpty();
+        assertThat(responseWithFilters).hasSize(1);
+        assertThat(responseWithFilters.getFirst()).isEqualTo(TATOOINE);
+    }
+
+    @Test
+    public void listPlants_ReturnsNoPlanets() throws Exception {
+        Example<Planet> query = QueryBuilder.makeQuery(new Planet());
+
+        List<Planet> response = repository.findAll(query);
+
+        assertThat(response).isEmpty();
+    }
 }
