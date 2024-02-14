@@ -12,6 +12,7 @@ import java.util.Optional;
 import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @DataJpaTest
 public class PlanetRepositoryTest {
@@ -71,6 +72,23 @@ public class PlanetRepositoryTest {
     @Test
     public void getPlanet_ByUnExistingId_ReturnsEmpty() {
         Optional<Planet> planetOpt = repository.findById(1L);
+
+        assertThat(planetOpt).isEmpty();
+    }
+
+    @Test
+    public void getPlanet_ByExistingName_ReturnsPlanet() {
+        Planet planet = testEntityManager.persistFlushFind(PLANET);
+
+        Optional<Planet> planetOpt = repository.findByName(planet.getName());
+
+        assertThat(planetOpt).isNotEmpty();
+        assertThat(planetOpt.get()).isEqualTo(planet);
+    }
+
+    @Test
+    public void getPlanet_ByUnExistingName_ReturnsEmpty() {
+        Optional<Planet> planetOpt = repository.findByName("name");
 
         assertThat(planetOpt).isEmpty();
     }
