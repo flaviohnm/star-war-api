@@ -1,5 +1,6 @@
 package com.example.swplanetapi.repository;
 
+
 import com.example.swplanetapi.model.Planet;
 import com.example.swplanetapi.querybuilder.QueryBuilder;
 import org.junit.jupiter.api.AfterEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -17,7 +19,6 @@ import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
 import static com.example.swplanetapi.commom.PlanetConstants.TATOOINE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.anyString;
 
 @DataJpaTest
 public class PlanetRepositoryTest {
@@ -122,4 +123,15 @@ public class PlanetRepositoryTest {
 
         assertThat(response).isEmpty();
     }
+
+    @Test
+    public void removePlanet_WithExistingId_RemovesPlanetFromDatabase() {
+        Planet planet = testEntityManager.persistFlushFind(PLANET);
+
+        repository.deleteById(planet.getId());
+
+        Planet removedPlanet = testEntityManager.find(Planet.class, planet.getId());
+        assertThat(removedPlanet).isNull();
+    }
+
 }
