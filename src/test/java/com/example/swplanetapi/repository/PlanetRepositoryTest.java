@@ -1,10 +1,13 @@
 package com.example.swplanetapi.repository;
 
 import com.example.swplanetapi.model.Planet;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+import java.util.Optional;
 
 import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,6 +21,11 @@ public class PlanetRepositoryTest {
 
     @Autowired
     private TestEntityManager testEntityManager;
+
+    @AfterEach
+    public void afterEach() {
+        PLANET.setId(null);
+    }
 
     @Test
     public void createPlanet_WithValidData_ReturnsPlanet() {
@@ -50,5 +58,21 @@ public class PlanetRepositoryTest {
         assertThatThrownBy(() -> repository.save(planet)).isInstanceOf(RuntimeException.class);
     }
 
+    @Test
+    public void getPlanet_ByExistingId_ReturnsPlanet() {
+        Planet planet = testEntityManager.persistFlushFind(PLANET);
+
+        Optional<Planet> planetOpt = repository.findById(planet.getId());
+
+        assertThat(planetOpt).isNotEmpty();
+        assertThat(planetOpt.get()).isEqualTo(planet);
+    }
+
+    @Test
+    public void getPlanet_ByUnExistingId_ReturnsEmpty() {
+        Optional<Planet> planetOpt = repository.findById(1L);
+
+        assertThat(planetOpt).isEmpty();
+    }
 
 }
