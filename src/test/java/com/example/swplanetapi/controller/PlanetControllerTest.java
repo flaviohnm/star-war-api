@@ -11,9 +11,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
-import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
+import static com.example.swplanetapi.commom.PlanetConstants.*;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -108,5 +111,31 @@ public class PlanetControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void listPlants_ReturnsFilteredPlanets() throws Exception {
+        when(service.getPlanets(null, null)).thenReturn(PLANETS);
+        when(service.getPlanets(TATOOINE.getClimate(), TATOOINE.getTerrain())).thenReturn(List.of(TATOOINE));
+
+        mockMvc.perform(
+                        get("/planets"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)));
+
+        mockMvc.perform(
+                        get("/planets?" + String.format("climate=%s&terrain=%s", TATOOINE.getClimate(), TATOOINE.getTerrain())))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0]").value(TATOOINE));
+    }
+
+    @Test
+    public void listPlants_ReturnsNoPlanets() throws Exception {
+        when(service.getPlanets(null, null)).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(
+                        get("/planets"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
 
 }
