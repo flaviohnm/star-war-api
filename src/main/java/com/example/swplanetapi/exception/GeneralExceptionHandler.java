@@ -26,7 +26,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    private ResponseEntity<Object> handleBadRequest(EmptyResultDataAccessException exception) {
+    private ResponseEntity<Object> handleNotFound(EmptyResultDataAccessException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(exception.getMessage());
     }

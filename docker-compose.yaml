@@ -17,10 +17,11 @@ services:
     networks:
       - monteiro-network
     volumes:
-      - my-db_star_wars:/var/lib/mysql
+      - my-db:/var/lib/mysql
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  my-db_star_wars:
+  my-db:
 
 networks:
   monteiro-network:
