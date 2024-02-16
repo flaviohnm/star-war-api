@@ -20,6 +20,7 @@
         <h2.version>2.2.224</h2.version>
         <mysql.version>8.3.0</mysql.version>
         <jacoco.version>0.8.11</jacoco.version>
+        <springwebtest.version>5.4.0</springwebtest.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
         <!-- mysql  -->
         <dependency>
             <groupId>com.mysql</groupId>
@@ -55,6 +60,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Web Test -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-web-test-client</artifactId>
+            <version>${springwebtest.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- H2 Database -->
