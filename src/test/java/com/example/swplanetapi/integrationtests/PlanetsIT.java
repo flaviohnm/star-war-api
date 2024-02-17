@@ -1,4 +1,4 @@
-package com.example.swplanetapi;
+package com.example.swplanetapi.integrationtests;
 
 import com.example.swplanetapi.model.Planet;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = {"/remove_planets.sql"}, executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
 @Sql(scripts = {"/import_planets.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-public class PlanetsIT {
+public class PlanetsIT extends AbstractIntegrationTest {
 
     @Autowired
     private WebTestClient client;

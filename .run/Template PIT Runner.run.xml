@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="PIT" factoryName="PIT Runner" REPORT_DIR="$PROJECT_DIR$/target/report" SOURCE_DIRS="$PROJECT_DIR$/src/main/java" TARGET_CLASSES="com.example.*" TARGET_TESTS="" otherParams="--outputFormats XML,HTML">
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
