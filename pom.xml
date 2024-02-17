@@ -21,6 +21,9 @@
         <mysql.version>8.3.0</mysql.version>
         <jacoco.version>0.8.11</jacoco.version>
         <springwebtest.version>5.4.0</springwebtest.version>
+        <pitest.version>1.15.2</pitest.version>
+        <pitest-junit5.version>1.2.1</pitest-junit5.version>
+        <testcontainers-bom.version>1.19.5</testcontainers-bom.version>
     </properties>
 
     <dependencies>
@@ -82,6 +85,16 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>${jacoco.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mysql</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -156,7 +169,37 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>${pitest-junit5.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetTests>
+                        <param>com.example.swplanetapi.*Test</param>
+                    </targetTests>
+                    <excludedClasses>
+                        <param>com.example.swplanetapi.model.Planet</param>
+                    </excludedClasses>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
