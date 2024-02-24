@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <version>3.2.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
@@ -23,7 +23,7 @@
         <springwebtest.version>5.4.0</springwebtest.version>
         <pitest.version>1.15.8</pitest.version>
         <pitest-junit5.version>1.2.1</pitest-junit5.version>
-        <testcontainers-bom.version>1.19.5</testcontainers-bom.version>
+        <testcontainers-bom.version>1.19.6</testcontainers-bom.version>
     </properties>
 
     <dependencies>
