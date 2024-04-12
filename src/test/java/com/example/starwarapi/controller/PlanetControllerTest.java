@@ -1,7 +1,7 @@
-package com.example.swplanetapi.controller;
+package com.example.starwarapi.controller;
 
-import com.example.swplanetapi.model.Planet;
-import com.example.swplanetapi.service.PlanetService;
+import com.example.starwarapi.model.Planet;
+import com.example.starwarapi.service.PlanetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.swplanetapi.commom.PlanetConstants.*;
+import static com.example.starwarapi.commom.PlanetConstants.*;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;

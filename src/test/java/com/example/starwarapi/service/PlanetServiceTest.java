@@ -1,8 +1,8 @@
-package com.example.swplanetapi.service;
+package com.example.starwarapi.service;
 
-import com.example.swplanetapi.model.Planet;
-import com.example.swplanetapi.querybuilder.QueryBuilder;
-import com.example.swplanetapi.repository.PlanetRepository;
+import com.example.starwarapi.model.Planet;
+import com.example.starwarapi.querybuilder.QueryBuilder;
+import com.example.starwarapi.repository.PlanetRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,8 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.swplanetapi.commom.PlanetConstants.INVALID_PLANET;
-import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
+import static com.example.starwarapi.commom.PlanetConstants.INVALID_PLANET;
+import static com.example.starwarapi.commom.PlanetConstants.PLANET;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;

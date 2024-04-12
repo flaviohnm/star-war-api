@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>sw-planet-api</artifactId>
+    <artifactId>star-war-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sw-planet-api</name>
     <description>Projeto Planetas Star Wars</description>
@@ -182,10 +182,10 @@
                 </dependencies>
                 <configuration>
                     <targetTests>
-                        <param>com.example.swplanetapi.*Test</param>
+                        <param>com.example.starwarapi.*Test</param>
                     </targetTests>
                     <excludedClasses>
-                        <param>com.example.swplanetapi.model.Planet</param>
+                        <param>com.example.starwarapi.model.Planet</param>
                     </excludedClasses>
                 </configuration>
             </plugin>
