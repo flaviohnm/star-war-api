@@ -1,4 +1,4 @@
-package com.example.swplanetapi.integrationtests;
+package com.example.starwarapi.integrationtests;
 
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;

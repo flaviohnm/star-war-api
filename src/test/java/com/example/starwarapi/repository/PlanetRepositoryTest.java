@@ -1,8 +1,8 @@
-package com.example.swplanetapi.repository;
+package com.example.starwarapi.repository;
 
 
-import com.example.swplanetapi.model.Planet;
-import com.example.swplanetapi.querybuilder.QueryBuilder;
+import com.example.starwarapi.model.Planet;
+import com.example.starwarapi.querybuilder.QueryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,8 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
-import static com.example.swplanetapi.commom.PlanetConstants.TATOOINE;
+import static com.example.starwarapi.commom.PlanetConstants.PLANET;
+import static com.example.starwarapi.commom.PlanetConstants.TATOOINE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

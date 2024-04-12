@@ -1,4 +1,4 @@
-package com.example.swplanetapi.model;
+package com.example.starwarapi.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

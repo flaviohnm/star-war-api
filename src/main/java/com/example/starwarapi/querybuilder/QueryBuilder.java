@@ -1,6 +1,6 @@
-package com.example.swplanetapi.querybuilder;
+package com.example.starwarapi.querybuilder;
 
-import com.example.swplanetapi.model.Planet;
+import com.example.starwarapi.model.Planet;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
