@@ -1,6 +1,6 @@
-package com.example.swplanetapi.commom;
+package com.example.starwarapi.commom;
 
-import com.example.swplanetapi.model.Planet;
+import com.example.starwarapi.model.Planet;
 
 import java.util.ArrayList;
 import java.util.List;

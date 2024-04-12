@@ -1,6 +1,6 @@
-package com.example.swplanetapi.repository;
+package com.example.starwarapi.repository;
 
-import com.example.swplanetapi.model.Planet;
+import com.example.starwarapi.model.Planet;
 import org.springframework.data.domain.Example;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;

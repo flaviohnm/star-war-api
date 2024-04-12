@@ -1,7 +1,7 @@
-package com.example.swplanetapi.controller;
+package com.example.starwarapi.controller;
 
-import com.example.swplanetapi.model.Planet;
-import com.example.swplanetapi.service.PlanetService;
+import com.example.starwarapi.model.Planet;
+import com.example.starwarapi.service.PlanetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

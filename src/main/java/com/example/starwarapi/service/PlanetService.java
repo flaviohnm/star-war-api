@@ -1,8 +1,8 @@
-package com.example.swplanetapi.service;
+package com.example.starwarapi.service;
 
-import com.example.swplanetapi.model.Planet;
-import com.example.swplanetapi.querybuilder.QueryBuilder;
-import com.example.swplanetapi.repository.PlanetRepository;
+import com.example.starwarapi.model.Planet;
+import com.example.starwarapi.querybuilder.QueryBuilder;
+import com.example.starwarapi.repository.PlanetRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 

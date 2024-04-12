@@ -1,6 +1,6 @@
-package com.example.swplanetapi.integrationtests;
+package com.example.starwarapi.integrationtests;
 
-import com.example.swplanetapi.model.Planet;
+import com.example.starwarapi.model.Planet;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,8 +10,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static com.example.swplanetapi.commom.PlanetConstants.PLANET;
-import static com.example.swplanetapi.commom.PlanetConstants.TATOOINE;
+import static com.example.starwarapi.commom.PlanetConstants.PLANET;
+import static com.example.starwarapi.commom.PlanetConstants.TATOOINE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("it")

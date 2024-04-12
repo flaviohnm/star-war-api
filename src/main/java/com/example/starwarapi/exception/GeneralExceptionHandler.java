@@ -1,4 +1,4 @@
-package com.example.swplanetapi.exception;
+package com.example.starwarapi.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
