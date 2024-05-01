@@ -18,7 +18,7 @@
         <java.version>21</java.version>
         <commons.version>3.14.0</commons.version>
         <h2.version>2.2.224</h2.version>
-        <mysql.version>8.3.0</mysql.version>
+        <mysql.version>8.4.0</mysql.version>
         <jacoco.version>0.8.12</jacoco.version>
         <springwebtest.version>5.4.0</springwebtest.version>
         <pitest.version>1.16.0</pitest.version>
