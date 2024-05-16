@@ -21,7 +21,7 @@ jobs:
           cache: maven
 
       - name: Build with maven and run Test
-        run: mvn test-compile org.pitest:pitest-maven.mutationCovegare
+        run: mvn clean verify
 
       - name: Test Report Generation
         uses: actions/upload-artifact@v4
