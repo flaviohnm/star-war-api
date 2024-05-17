@@ -2,7 +2,7 @@ name: pitest
 on:
   push:
     branches:
-      - master
+      - develop
     paths-ignore:
       - '**.md'
       - '**.yml'
@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '21','22' ]
+        java: ['22' ]
         architecture: [ 'x64' ]
     name: Mutation Testing with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup JDK
@@ -39,4 +40,3 @@ jobs:
         with:
           github_token: ${{ ACTIONS_BOT_TOKEN }}
           publish_dir: ./target/pit-reports/*/
-
