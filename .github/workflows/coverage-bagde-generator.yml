@@ -40,7 +40,7 @@ jobs:
         if: success() || failure()
         with:
           name: TestNG Report
-          paths:
-            - target/surefire-reports/TEST-com.exemple.starwarapi.PlanetControllerTest.xml
-            - target/surefire-reports/TEST-com.exemple.starwarapi.PlanetRepositoryTest.xml
-            - target/surefire-reports/TEST-com.exemple.starwarapi.PlanetServiceTest.xml
+          path:
+            target/surefire-reports/TEST-com.exemple.starwarapi.PlanetControllerTest.xml
+            target/surefire-reports/TEST-com.exemple.starwarapi.PlanetRepositoryTest.xml
+            target/surefire-reports/TEST-com.exemple.starwarapi.PlanetServiceTest.xml
