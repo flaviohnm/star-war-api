@@ -8,10 +8,8 @@ on:
     branches:
       - develop
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
     name: Coverage Badge Generator
     steps:
