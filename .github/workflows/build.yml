@@ -2,13 +2,13 @@ name: build
 on:
   push:
     branches:
-      - develop
+      - master
     paths-ignore:
       - '**.md'
       - '**.yml'
   pull_request:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
@@ -18,28 +18,15 @@ jobs:
         java: [ '22' ]
         architecture: [ 'x64' ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'oracle'
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
           cache: 'maven'
 
-      - uses: actions/cache@v4.0.2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-
-      - name: Run Mutation Testing
-        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4.0.0
-        with:
-          github_token: ${{ secrets.ACTIONS_BOT_TOKEN }}
-          publish_dir: ./target/pit-reports/*/
+      - name: Build with Maven
+        run: mvn package
