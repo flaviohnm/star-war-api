@@ -8,11 +8,10 @@ on:
     branches:
       - develop
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    name: Coverage Badge Generator
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 22
