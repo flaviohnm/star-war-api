@@ -41,5 +41,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
-          github_token: ${{ ACTIONS_BOT_TOKEN }}
+          github_token: ${{ secrets.ACTIONS_BOT_TOKEN }}
           publish_dir: ./target/pit-reports/*/
