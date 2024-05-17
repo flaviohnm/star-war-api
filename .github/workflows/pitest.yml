@@ -2,7 +2,7 @@ name: pitest
 on:
   push:
     branches:
-      - develop
+      - master
     paths-ignore:
       - '**.md'
       - '**.yml'
@@ -13,10 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: ['22' ]
+        java: [ '22' ]
         architecture: [ 'x64' ]
     name: Mutation Testing with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup JDK
@@ -24,7 +23,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
-          distribution: 'temurin'
+          distribution: 'oracle'
 
       - uses: actions/cache@v4.0.2
         with:
@@ -38,5 +37,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
-          github_token: ${{ ACTIONS_BOT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/pit-reports/*/

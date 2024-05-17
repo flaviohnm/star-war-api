@@ -2,13 +2,13 @@ name: build
 on:
   push:
     branches:
-      - develop
+      - master
     paths-ignore:
       - '**.md'
       - '**.yml'
   pull_request:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
@@ -18,13 +18,12 @@ jobs:
         java: [ '22' ]
         architecture: [ 'x64' ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'oracle'
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
           cache: 'maven'
