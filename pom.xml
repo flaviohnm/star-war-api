@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>22</java.version>
-        <commons.version>3.14.0</commons.version>
+        <commons.version>3.15.0</commons.version>
         <h2.version>2.2.224</h2.version>
         <mysql.version>8.4.0</mysql.version>
         <jacoco.version>0.8.12</jacoco.version>
